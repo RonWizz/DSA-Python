@@ -1,0 +1,35 @@
+Trapping Rain Water 
+
+def trappedWater(heights):
+    num_blocks = 0
+    n = 0
+    max_height = float('-inf')
+     
+     
+    for height in heights:
+        num_blocks += height
+        n += 1
+        max_height = max(max_height, height)
+              
+    total = 0
+    left = 0
+    right = n - 1
+     
+    for i in range(max_height):
+
+        while heights[left] <= i:
+            left += 1
+
+        while heights[right] <= i:
+            right -= 1
+
+        total += right - left
+         
+
+         
+    total -= (num_blocks - max_height)
+    return total
+ 
+if __name__ == "__main__":
+    heights = [0,1,0,2,1,0,1,3,2,1,2,1]
+    print(trappedWater(heights))
